@@ -1,0 +1,20 @@
+<form novalidate #f="ngForm" (ngSubmit)="login()">
+		<br>
+		<div class="alert alert-danger" *ngIf="msg">
+			<strong>Error! </strong> {{msg}}
+		</div>
+		<br>
+		
+		<div class="form-group">
+				<label>Username</label>
+				<input type="text" name="username" [(ngModel)]="loginUser.username" class="form-control" #username="ngModel" />
+		</div>
+	
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" name="password" [(ngModel)]="loginUser.password" class="form-control" #password="ngModel"/>
+		</div>
+		<br>
+		<button type="submit" [disabled]="!f.valid" class="btn btn-primary">Login</button>
+	
+	</form>

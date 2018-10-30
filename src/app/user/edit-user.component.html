@@ -1,0 +1,60 @@
+<form novalidate #f="ngForm" (ngSubmit)="editUser()">
+	<br>
+		<div class="alert alert-success" *ngIf="msg">
+			<strong>Success!</strong> {{msg}}
+		</div>
+		<br>
+		<fieldset ngModelGroup="name">
+			<div class="form-group">
+				<label>First Name</label>
+				<input type="text" class="form-control" name="firstName" value="user.firstName" [(ngModel)]="user.firstName" required />
+			</div>
+	
+			<div class="form-group">
+				<label>Last Name</label>
+				<input type="text" class="form-control" name="lastName" value="user.lastName" [(ngModel)]="user.lastName" required />
+			</div>
+		</fieldset>
+		<div class="form-group">
+				<label>Username</label>
+				<input type="text" name="username" disabled = "true" value="user.username" [(ngModel)]="user.username" class="form-control" #username="ngModel" />
+				<div class="alert alert-danger" *ngIf="(username.dirty || username.touched) && (userNames.includes(user.username))">
+						Username already in use !
+				</div>
+		</div>
+	
+		<div class="form-group" [ngClass]="{
+			'has-danger': email.invalid && (email.dirty || email.touched),
+			'has-success': email.valid && (email.dirty || email.touched)
+		}">
+			<label>Email</label>
+			<input type="email" class="form-control" name="email" value="user.email" [(ngModel)]="user.email" pattern="[^ @]*@[^ @]*" #email="ngModel"
+			 required />
+			<div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+				<p *ngIf="email.errors.required">Email is required</p>
+				<p *ngIf="email.errors.pattern">Email must contain at least the @ character</p>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" disabled = "true" name="password" value="user.password" [(ngModel)]="user.password" class="form-control" #password="ngModel"
+			 minlength="8" />
+		</div>
+		<div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+			<p *ngIf="password.errors.minlength">Password should be at least {{ password.errors.minlength.requiredLength }}
+				characters long</p>
+		</div>
+	
+		<div class="form-group">
+			<label>Language</label>
+			<select class="form-control" name="language" value="user.language" [(ngModel)]="user.language">
+				<option value="">Please select a language</option>
+				<option *ngFor="let lang of langs" [value]="lang">{{lang}}
+				</option>
+			</select>
+		</div>
+		<br>
+		<button type="submit" [disabled]="!f.valid" class="btn btn-primary">Update</button>
+	
+	</form>

@@ -1,0 +1,38 @@
+<br>
+<div class="alert alert-danger" *ngIf="deleteMsg">
+	{{deleteMsg}}
+</div>
+<br>
+
+<div class="col-md-6">
+	<br>
+	<h3> User Details</h3>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th class="hidden">Id</th>
+				<th>UserName</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>Email</th>
+				<th>Language</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr *ngFor="let user of users">
+					<td class="hidden">{{user.id}}<td>
+					<td>{{user.username}}</td>
+					<td>{{user.firstName}}</td>
+					<td>{{user.lastName}}</td>	
+					<td>{{user.email}}</td>
+					<td>{{user.language}}</td>
+					<!--<td><button class="btn btn-warning" (click)="editUser(user)"> Edit </button></td>-->
+					<td><button class="btn btn-primary" [routerLink]="['/editUser', user.username]"> Edit </button></td>
+					<td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete </button></td>
+				</tr>
+			</tbody>
+	</table>
+</div>
