@@ -1,5 +1,6 @@
 To start the app : ng serve --proxy-config proxy.config.json
 
+To upgrade the app : https://medium.com/@jeroenouw/upgrade-to-angular-6-4520e46c682b
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
